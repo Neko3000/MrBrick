@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
-class NoteDetailViewController: UIViewController {
+class NoteDetailViewController: UIViewController,UITextViewDelegate {
 
+    var note:Note?
+    
     private var _noteTitle:String?
     private var _noteContent:String?
     
@@ -41,8 +44,9 @@ class NoteDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        noteTitleLabel.text = _noteTitle
-        noteContentTextView.text = _noteContent
+        
+        noteTitleLabel.text = note?.title
+        noteContentTextView.text = note?.content
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,7 +54,12 @@ class NoteDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func textViewDidChange(_ textView: UITextView) {
+        note?.content = textView.text
+        
+        DatabaseController.saveContext()
+    }
+    
     /*
     // MARK: - Navigation
 

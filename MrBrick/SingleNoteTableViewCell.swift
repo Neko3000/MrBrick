@@ -10,6 +10,8 @@ import UIKit
 
 class SingleNoteTableViewCell: UITableViewCell {
     
+    var note:Note?
+    
     @IBOutlet weak var noteTitleLabel: UILabel!
     @IBOutlet weak var noteContentTextView: UITextView!
     

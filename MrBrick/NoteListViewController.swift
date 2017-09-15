@@ -48,9 +48,10 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
             else{
                 fatalError("failed.")
         }
-        let note = notes[indexPath.row]
-        cell.noteTitleLabel.text = note.title
-        cell.noteContentTextView.text = note.content
+        let currentNote = notes[indexPath.row]
+        cell.note = currentNote
+        cell.noteTitleLabel.text = currentNote.title
+        cell.noteContentTextView.text = currentNote.content
         
         return cell
     }
@@ -60,9 +61,6 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     private func PrepareData()
     {
-        //let note1 = Note(title:"My first day",content:"enjoy it!",updatedTime:Date())
-        //let note2 = Note(title:"My second day",content:"fail it!",updatedTime:Date())
-        
         let fetchRequest:NSFetchRequest<Note> = Note.fetchRequest()
         
         do{
@@ -92,11 +90,11 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         if(segue.identifier == "showNoteDetail")
         {
             //let navController = segue.destination as! UINavigationController
-            
             //let destController = navController.topViewController as! NoteDetailViewController
             let destController = segue.destination as! NoteDetailViewController
             let orgCell = sender as! SingleNoteTableViewCell
             
+            destController.note = orgCell.note
             destController.noteTitle = orgCell.noteTitleLabel.text
             destController.noteContent = orgCell.noteContentTextView.text
         }
