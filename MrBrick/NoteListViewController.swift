@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
@@ -18,6 +19,8 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        //InitData()
         PrepareData()
     }
 
@@ -46,8 +49,8 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 fatalError("failed.")
         }
         let note = notes[indexPath.row]
-        cell.Title.text = note.title
-        cell.Content.text = note.content
+        cell.noteTitleLabel.text = note.title
+        cell.noteContentTextView.text = note.content
         
         return cell
     }
@@ -57,7 +60,45 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     private func PrepareData()
     {
-        let note1 = Note(title:"My first day",content:"enjoy it!",updatedTime:Date())
-        notes += [note1!]
+        //let note1 = Note(title:"My first day",content:"enjoy it!",updatedTime:Date())
+        //let note2 = Note(title:"My second day",content:"fail it!",updatedTime:Date())
+        
+        let fetchRequest:NSFetchRequest<Note> = Note.fetchRequest()
+        
+        do{
+            let searchResults = try DatabaseController.getContext().fetch(fetchRequest)
+            
+            notes = searchResults as [Note]
+            
+            for singleNote in searchResults as [Note]{
+                 print("\(singleNote.title)")
+            }
+        }
+        catch{
+            
+        }
+        
+    }
+    private func InitData(){
+        let note:Note = NSEntityDescription.insertNewObject(forEntityName: "Note", into: DatabaseController.getContext())
+        as! Note
+        note.title = "Summer air"
+        note.content = "why we just come back"
+        note.updateDate = NSDate()
+        
+        DatabaseController.saveContext()
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "showNoteDetail")
+        {
+            //let navController = segue.destination as! UINavigationController
+            
+            //let destController = navController.topViewController as! NoteDetailViewController
+            let destController = segue.destination as! NoteDetailViewController
+            let orgCell = sender as! SingleNoteTableViewCell
+            
+            destController.noteTitle = orgCell.noteTitleLabel.text
+            destController.noteContent = orgCell.noteContentTextView.text
+        }
     }
 }

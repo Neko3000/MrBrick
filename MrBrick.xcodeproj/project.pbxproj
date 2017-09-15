@@ -11,9 +11,12 @@
 		EB91AF151F67FD5100A10DF0 /* UITextViewFixed.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91AF141F67FD5100A10DF0 /* UITextViewFixed.swift */; };
 		EB91AF171F68078900A10DF0 /* NoteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91AF161F68078900A10DF0 /* NoteDetailViewController.swift */; };
 		EB91AF191F680AB600A10DF0 /* UITextFieldLineStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91AF181F680AB600A10DF0 /* UITextFieldLineStyle.swift */; };
+		EB9C811F1F6AD7E300F83045 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C811D1F6AD7E300F83045 /* Note+CoreDataClass.swift */; };
+		EB9C81201F6AD7E300F83045 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C811E1F6AD7E300F83045 /* Note+CoreDataProperties.swift */; };
 		EB9E4BC61F650A9600037B47 /* SingleNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9E4BC51F650A9600037B47 /* SingleNoteTableViewCell.swift */; };
-		EB9E4BCA1F65155C00037B47 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9E4BC91F65155C00037B47 /* Note.swift */; };
 		EBB16CBB1F642236009EFC7F /* images in Resources */ = {isa = PBXBuildFile; fileRef = EBB16CBA1F642236009EFC7F /* images */; };
+		EBCAB0791F6AA5D400E2E692 /* MrBrick.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EBCAB0771F6AA5D400E2E692 /* MrBrick.xcdatamodeld */; };
+		EBCAB0A11F6AACC000E2E692 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCAB0A01F6AACC000E2E692 /* DatabaseController.swift */; };
 		EBDBFE781F61830E00E8FC6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDBFE771F61830E00E8FC6E /* AppDelegate.swift */; };
 		EBDBFE7D1F61830E00E8FC6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBDBFE7B1F61830E00E8FC6E /* Main.storyboard */; };
 		EBDBFE7F1F61830E00E8FC6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBDBFE7E1F61830E00E8FC6E /* Assets.xcassets */; };
@@ -25,9 +28,12 @@
 		EB91AF141F67FD5100A10DF0 /* UITextViewFixed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewFixed.swift; sourceTree = "<group>"; };
 		EB91AF161F68078900A10DF0 /* NoteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteDetailViewController.swift; sourceTree = "<group>"; };
 		EB91AF181F680AB600A10DF0 /* UITextFieldLineStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldLineStyle.swift; sourceTree = "<group>"; };
+		EB9C811D1F6AD7E300F83045 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EB9C811E1F6AD7E300F83045 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EB9E4BC51F650A9600037B47 /* SingleNoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNoteTableViewCell.swift; sourceTree = "<group>"; };
-		EB9E4BC91F65155C00037B47 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		EBB16CBA1F642236009EFC7F /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		EBCAB0781F6AA5D400E2E692 /* MrBrick.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MrBrick.xcdatamodel; sourceTree = "<group>"; };
+		EBCAB0A01F6AACC000E2E692 /* DatabaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseController.swift; sourceTree = "<group>"; };
 		EBDBFE741F61830E00E8FC6E /* MrBrick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MrBrick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBDBFE771F61830E00E8FC6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBDBFE7C1F61830E00E8FC6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,9 +83,16 @@
 		EB97C3321F66BA1B00FE4392 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EB9E4BC91F65155C00037B47 /* Note.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		EBCAB07A1F6AA83C00E2E692 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				EBCAB0771F6AA5D400E2E692 /* MrBrick.xcdatamodeld */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		EBDBFE6B1F61830E00E8FC6E = {
@@ -101,6 +114,10 @@
 		EBDBFE761F61830E00E8FC6E /* MrBrick */ = {
 			isa = PBXGroup;
 			children = (
+				EBCAB0A01F6AACC000E2E692 /* DatabaseController.swift */,
+				EB9C811D1F6AD7E300F83045 /* Note+CoreDataClass.swift */,
+				EB9C811E1F6AD7E300F83045 /* Note+CoreDataProperties.swift */,
+				EBCAB07A1F6AA83C00E2E692 /* CoreData */,
 				EB91AF131F67FCFF00A10DF0 /* ModifiedControls */,
 				EB97C3321F66BA1B00FE4392 /* Models */,
 				EB97C3311F66BA0A00FE4392 /* Controllers */,
@@ -187,13 +204,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB9E4BCA1F65155C00037B47 /* Note.swift in Sources */,
+				EBCAB0A11F6AACC000E2E692 /* DatabaseController.swift in Sources */,
 				EB9E4BC61F650A9600037B47 /* SingleNoteTableViewCell.swift in Sources */,
 				EB91AF191F680AB600A10DF0 /* UITextFieldLineStyle.swift in Sources */,
+				EBCAB0791F6AA5D400E2E692 /* MrBrick.xcdatamodeld in Sources */,
 				EBDBFE781F61830E00E8FC6E /* AppDelegate.swift in Sources */,
 				EB91AF121F67D85B00A10DF0 /* NoteListViewController.swift in Sources */,
+				EB9C811F1F6AD7E300F83045 /* Note+CoreDataClass.swift in Sources */,
 				EB91AF151F67FD5100A10DF0 /* UITextViewFixed.swift in Sources */,
 				EB91AF171F68078900A10DF0 /* NoteDetailViewController.swift in Sources */,
+				EB9C81201F6AD7E300F83045 /* Note+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +380,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EBCAB0771F6AA5D400E2E692 /* MrBrick.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EBCAB0781F6AA5D400E2E692 /* MrBrick.xcdatamodel */,
+			);
+			currentVersion = EBCAB0781F6AA5D400E2E692 /* MrBrick.xcdatamodel */;
+			path = MrBrick.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EBDBFE6C1F61830E00E8FC6E /* Project object */;
 }

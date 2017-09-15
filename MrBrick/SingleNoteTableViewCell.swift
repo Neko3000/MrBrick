@@ -10,8 +10,8 @@ import UIKit
 
 class SingleNoteTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var Title: UILabel!
-    @IBOutlet weak var Content: UITextView!
+    @IBOutlet weak var noteTitleLabel: UILabel!
+    @IBOutlet weak var noteContentTextView: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

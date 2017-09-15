@@ -41,7 +41,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nch-vB-Uy9" customClass="UITextViewFixed" customModule="MrBrick" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="29" width="339" height="48"/>
+                                                    <rect key="frame" x="18" y="28" width="339" height="48"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -51,9 +51,9 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="Content" destination="nch-vB-Uy9" id="c2N-T4-tob"/>
-                                            <outlet property="Title" destination="NuA-uV-9OU" id="IdP-IB-aIl"/>
-                                            <segue destination="Gvz-2w-z8k" kind="show" id="JQ5-kE-N57"/>
+                                            <outlet property="noteContentTextView" destination="nch-vB-Uy9" id="4tI-S4-74d"/>
+                                            <outlet property="noteTitleLabel" destination="NuA-uV-9OU" id="sJp-gD-a29"/>
+                                            <segue destination="Gvz-2w-z8k" kind="show" identifier="showNoteDetail" id="JQ5-kE-N57"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -105,8 +105,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="noteContent" destination="wxp-sc-WB4" id="9Kv-h2-zhX"/>
-                        <outlet property="noteTitle" destination="CQK-HX-t43" id="oSU-by-bZg"/>
+                        <outlet property="noteContentTextView" destination="wxp-sc-WB4" id="dMj-QV-ypc"/>
+                        <outlet property="noteTitleLabel" destination="CQK-HX-t43" id="s3i-fA-otq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bl8-N7-JYu" userLabel="First Responder" sceneMemberID="firstResponder"/>

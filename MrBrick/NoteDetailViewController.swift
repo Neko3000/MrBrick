@@ -10,15 +10,39 @@ import UIKit
 
 class NoteDetailViewController: UIViewController {
 
-    @IBOutlet weak var noteTitle: UITextFieldLineStyle!
+    private var _noteTitle:String?
+    private var _noteContent:String?
     
-    @IBOutlet weak var noteContent: UITextViewFixed!
+    var noteTitle:String?
+    {
+        get{
+            return _noteTitle
+        }
+        set{
+            _noteTitle = newValue
+        }
+    }
+    var noteContent:String?
+    {
+        get{
+            return _noteContent
+        }
+        set{
+            _noteContent = newValue
+        }
+    }
     
+    
+    @IBOutlet weak var noteTitleLabel: UITextFieldLineStyle!
+    
+    @IBOutlet weak var noteContentTextView: UITextViewFixed!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        noteTitleLabel.text = _noteTitle
+        noteContentTextView.text = _noteContent
     }
 
     override func didReceiveMemoryWarning() {
