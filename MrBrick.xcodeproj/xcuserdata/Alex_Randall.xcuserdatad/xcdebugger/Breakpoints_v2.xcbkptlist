@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MrBrick/NoteListViewController.swift"
-            timestampString = "527183277.85545"
+            timestampString = "527308914.346613"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "PrepareData()"
             landmarkType = "7">
          </BreakpointContent>

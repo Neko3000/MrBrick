@@ -67,10 +67,6 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
             let searchResults = try DatabaseController.getContext().fetch(fetchRequest)
             
             notes = searchResults as [Note]
-            
-            for singleNote in searchResults as [Note]{
-                 print("\(singleNote.title)")
-            }
         }
         catch{
             
@@ -91,6 +87,7 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         {
             //let navController = segue.destination as! UINavigationController
             //let destController = navController.topViewController as! NoteDetailViewController
+            
             let destController = segue.destination as! NoteDetailViewController
             let orgCell = sender as! SingleNoteTableViewCell
             
@@ -98,5 +95,37 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
             destController.noteTitle = orgCell.noteTitleLabel.text
             destController.noteContent = orgCell.noteContentTextView.text
         }
+        else if(segue.identifier == "createNote")
+        {
+            let destController = segue.destination as! NoteDetailViewController
+            
+            let newNote:Note = NSEntityDescription.insertNewObject(forEntityName: "Note", into: DatabaseController.getContext())
+                as! Note
+            newNote.title = "input your title here"
+            newNote.content = "and input your content here"
+            newNote.updateDate = NSDate()
+            
+            destController.note = newNote
+            
+            //haven't saved yet
+        }
     }
+    
+    @IBAction func ConvertToEditModel(_ sender: Any) {
+        
+        MainList.setEditing(!MainList.isEditing, animated: true)
+        (sender as! UIBarButtonItem).title = MainList.isEditing ? "Done":"Edit"
+        
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        navigationItem.leftBarButtonItem?.title = "check"
+        
+        if editingStyle == .delete{
+            notes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        
+    }
+    
 }
