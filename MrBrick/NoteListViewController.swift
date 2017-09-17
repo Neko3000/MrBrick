@@ -9,9 +9,25 @@
 import UIKit
 import CoreData
 
-class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,NSFetchedResultsControllerDelegate {
     
     var notes = [Note]()
+    
+    
+    var fetchedResultsController: NSFetchedResultsController<Note>?
+    
+    func initializeFetchedResultController()->NSFetchedResultsController<Note>{
+        let request:NSFetchRequest<Note> = Note.fetchRequest()
+        let primarySortDescriptor = NSSortDescriptor(key: "updateDate", ascending: true)
+        let secondarySortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        
+        request.sortDescriptors = [primarySortDescriptor,secondarySortDescriptor]
+        
+        let frc = NSFetchedResultsController<Note>(fetchRequest: request, managedObjectContext: DatabaseController.getContext(), sectionNameKeyPath: nil, cacheName: nil)
+        frc.delegate = self
+        
+        return frc
+    }
     
     @IBOutlet weak var MainList: UITableView!
     
@@ -21,7 +37,15 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         // Do any additional setup after loading the view.
         
         //InitData()
-        PrepareData()
+        //PrepareData()
+        
+        fetchedResultsController = initializeFetchedResultController()
+        do{
+            try fetchedResultsController?.performFetch()
+        }
+        catch{
+            fatalError("can not performfetch")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,7 +64,12 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notes.count
+        guard let sections = fetchedResultsController?.sections else{
+            fatalError("no sections in fetchedResultsController")
+        }
+        let sectionInfo = sections[section]
+        
+        return sectionInfo.numberOfObjects
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "SingleNoteTableViewCell"
@@ -48,16 +77,52 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
             else{
                 fatalError("failed.")
         }
-        let currentNote = notes[indexPath.row]
-        cell.note = currentNote
+//        let currentNote = notes[indexPath.row]
+//        cell.note = currentNote
+//        cell.noteTitleLabel.text = currentNote.title
+//        cell.noteContentTextView.text = currentNote.content
+        
+        let currentNote = fetchedResultsController?.object(at: indexPath) as! Note
         cell.noteTitleLabel.text = currentNote.title
         cell.noteContentTextView.text = currentNote.content
-        
         return cell
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return (fetchedResultsController?.sections?.count)!
     }
+    
+    //comunication
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        MainList.beginUpdates()
+    }
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type{
+        case .insert:
+            MainList.insertSections(IndexSet(integer:sectionIndex), with: .fade)
+        case .delete:
+            MainList.deleteSections(IndexSet(integer:sectionIndex), with: .fade)
+        case .move:
+            break
+        case .update:
+            break
+        }
+    }
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            MainList.insertRows(at: [newIndexPath!], with: .fade)
+        case .delete:
+            MainList.deleteRows(at: [indexPath!], with: .fade)
+        case .update:
+            MainList.reloadRows(at: [indexPath!], with: .fade)
+        case .move:
+            MainList.moveRow(at: indexPath!, to: newIndexPath!)
+        }
+    }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        MainList.endUpdates()
+    }
+    
     
     private func PrepareData()
     {
@@ -76,15 +141,18 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     private func InitData(){
         let note:Note = NSEntityDescription.insertNewObject(forEntityName: "Note", into: DatabaseController.getContext())
         as! Note
-        note.title = "Summer air"
-        note.content = "why we just come back"
+        note.title = "Winter air"
+        note.content = "this season is never be changed"
         note.updateDate = NSDate()
         
         DatabaseController.saveContext()
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "showNoteDetail")
-        {
+        
+        switch (segue.identifier ?? "") {
+            
+        case "showNoteDetail":
             //let navController = segue.destination as! UINavigationController
             //let destController = navController.topViewController as! NoteDetailViewController
             
@@ -94,21 +162,41 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
             destController.note = orgCell.note
             destController.noteTitle = orgCell.noteTitleLabel.text
             destController.noteContent = orgCell.noteContentTextView.text
-        }
-        else if(segue.identifier == "createNote")
-        {
+            
+        case "createNote":
             let destController = segue.destination as! NoteDetailViewController
             
             let newNote:Note = NSEntityDescription.insertNewObject(forEntityName: "Note", into: DatabaseController.getContext())
                 as! Note
-            newNote.title = "input your title here"
-            newNote.content = "and input your content here"
+            newNote.title = ""
+            newNote.content = ""
             newNote.updateDate = NSDate()
             
             destController.note = newNote
+            DatabaseController.saveContext()
             
-            //haven't saved yet
+        default:
+            fatalError("unexpected segue identifier")
         }
+
+    }
+
+    @IBAction func BuildANewData(_ sender: Any) {
+        let note:Note = NSEntityDescription.insertNewObject(forEntityName: "Note", into: DatabaseController.getContext())
+            as! Note
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let myString = formatter.string(from: Date())
+        let yourDate = formatter.date(from: myString)
+        formatter.dateFormat = "dd-MM-yyyy"
+        let myStringFD = formatter.string(from: yourDate!)
+        
+        note.title = myStringFD
+        note.content = "this season is never be changed"
+        note.updateDate = NSDate()
+        
+        DatabaseController.saveContext()
     }
     
     @IBAction func ConvertToEditModel(_ sender: Any) {
@@ -116,6 +204,7 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         MainList.setEditing(!MainList.isEditing, animated: true)
         (sender as! UIBarButtonItem).title = MainList.isEditing ? "Done":"Edit"
         
+        InitData()
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
