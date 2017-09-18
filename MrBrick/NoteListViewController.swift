@@ -83,6 +83,7 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
 //        cell.noteContentTextView.text = currentNote.content
         
         let currentNote = fetchedResultsController?.object(at: indexPath) as! Note
+        cell.note = currentNote
         cell.noteTitleLabel.text = currentNote.title
         cell.noteContentTextView.text = currentNote.content
         return cell
@@ -204,15 +205,28 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         MainList.setEditing(!MainList.isEditing, animated: true)
         (sender as! UIBarButtonItem).title = MainList.isEditing ? "Done":"Edit"
         
-        InitData()
+        //InitData()
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         navigationItem.leftBarButtonItem?.title = "check"
         
         if editingStyle == .delete{
-            notes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            let context = DatabaseController.getContext()
+            let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
+            
+            let cell = tableView.cellForRow(at: indexPath) as! SingleNoteTableViewCell
+            context.delete(cell.note!)
+            
+            do{
+                try context.save()
+            }
+            catch{
+                fatalError("can not save context")
+            }
+            
+            //tableView.deleteRows(at: [indexPath], with: .fade)
+            
         }
         
     }
