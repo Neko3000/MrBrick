@@ -36,9 +36,6 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
 
         // Do any additional setup after loading the view.
         
-        //InitData()
-        //PrepareData()
-        
         fetchedResultsController = initializeFetchedResultController()
         do{
             try fetchedResultsController?.performFetch()
@@ -46,6 +43,10 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         catch{
             fatalError("can not performfetch")
         }
+        
+        
+        // separatorStyle
+        MainList.separatorStyle = .none
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,6 +64,8 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //initialize the tableview
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sections = fetchedResultsController?.sections else{
             fatalError("no sections in fetchedResultsController")
@@ -71,28 +74,26 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         return sectionInfo.numberOfObjects
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "SingleNoteTableViewCell"
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SingleNoteTableViewCell
             else{
                 fatalError("failed.")
         }
-//        let currentNote = notes[indexPath.row]
-//        cell.note = currentNote
-//        cell.noteTitleLabel.text = currentNote.title
-//        cell.noteContentTextView.text = currentNote.content
         
-        let currentNote = fetchedResultsController?.object(at: indexPath) as! Note
+        let currentNote = fetchedResultsController?.object(at: indexPath) as Note!
         cell.note = currentNote
-        cell.noteTitleLabel.text = currentNote.title
-        cell.noteContentTextView.text = currentNote.content
+        cell.noteTitleLabel.text = currentNote!.title
+        cell.noteContentTextView.text = currentNote!.content
         return cell
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return (fetchedResultsController?.sections?.count)!
     }
     
-    //comunication
+    // comunication
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         MainList.beginUpdates()
     }
@@ -124,7 +125,7 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         MainList.endUpdates()
     }
     
-    
+    // test functions
     private func PrepareData()
     {
         let fetchRequest:NSFetchRequest<Note> = Note.fetchRequest()
@@ -149,6 +150,7 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         DatabaseController.saveContext()
     }
     
+    // segue behaviors
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch (segue.identifier ?? "") {
@@ -205,7 +207,6 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         MainList.setEditing(!MainList.isEditing, animated: true)
         (sender as! UIBarButtonItem).title = MainList.isEditing ? "Done":"Edit"
         
-        //InitData()
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -213,7 +214,6 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         
         if editingStyle == .delete{
             let context = DatabaseController.getContext()
-            let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
             
             let cell = tableView.cellForRow(at: indexPath) as! SingleNoteTableViewCell
             context.delete(cell.note!)
@@ -225,10 +225,19 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 fatalError("can not save context")
             }
             
-            //tableView.deleteRows(at: [indexPath], with: .fade)
-            
         }
         
     }
+    
+    // hide navigationbar
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillAppear(animated)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
+    
     
 }

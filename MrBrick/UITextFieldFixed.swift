@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class UITextFieldLineStyle: UITextField {
+@IBDesignable class UITextFieldFixed: UITextField,UITextFieldDelegate {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -30,5 +30,26 @@ import UIKit
         self.layer.shadowOpacity = 1.0
         self.layer.shadowRadius = 0.0
     }
+    /*func getWidth(text:String?) -> CGFloat
+    {
+        let textField = UITextField(frame: zero)
+        textField.text = text
+        textField.sizeToFit()
+        return textField.frame.size.width
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let width = getWidth(textField.text!)
+        if(UIScreen.mainScreen().bounds.width - 55 > width)
+        {
+            let txtWidthOfName.constant = 0.0
+            if(width > txtWidthOfName.constant)
+            {
+                txtWidthOfName.constant = width
+            }
+            view.layoutIfNeeded()
+        }
+        return true
+    }*/
+    
     
 }

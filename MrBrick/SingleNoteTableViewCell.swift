@@ -18,6 +18,8 @@ class SingleNoteTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        noteContentTextView.textContainer.maximumNumberOfLines = 3
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

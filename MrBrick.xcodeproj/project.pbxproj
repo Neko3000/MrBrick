@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB2085761F729302005DB1A2 /* StretchBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2085751F729302005DB1A2 /* StretchBox.swift */; };
+		EB7A282E1F72624F00D505F4 /* MF ShangYa Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EB7A282D1F72624F00D505F4 /* MF ShangYa Regular.otf */; };
 		EB91AF121F67D85B00A10DF0 /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91AF111F67D85B00A10DF0 /* NoteListViewController.swift */; };
 		EB91AF151F67FD5100A10DF0 /* UITextViewFixed.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91AF141F67FD5100A10DF0 /* UITextViewFixed.swift */; };
 		EB91AF171F68078900A10DF0 /* NoteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91AF161F68078900A10DF0 /* NoteDetailViewController.swift */; };
-		EB91AF191F680AB600A10DF0 /* UITextFieldLineStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91AF181F680AB600A10DF0 /* UITextFieldLineStyle.swift */; };
+		EB91AF191F680AB600A10DF0 /* UITextFieldFixed.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91AF181F680AB600A10DF0 /* UITextFieldFixed.swift */; };
 		EB9C811F1F6AD7E300F83045 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C811D1F6AD7E300F83045 /* Note+CoreDataClass.swift */; };
 		EB9C81201F6AD7E300F83045 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9C811E1F6AD7E300F83045 /* Note+CoreDataProperties.swift */; };
 		EB9E4BC61F650A9600037B47 /* SingleNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9E4BC51F650A9600037B47 /* SingleNoteTableViewCell.swift */; };
@@ -24,10 +26,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB2085751F729302005DB1A2 /* StretchBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchBox.swift; sourceTree = "<group>"; };
+		EB7A282D1F72624F00D505F4 /* MF ShangYa Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MF ShangYa Regular.otf"; sourceTree = "<group>"; };
 		EB91AF111F67D85B00A10DF0 /* NoteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
 		EB91AF141F67FD5100A10DF0 /* UITextViewFixed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewFixed.swift; sourceTree = "<group>"; };
 		EB91AF161F68078900A10DF0 /* NoteDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteDetailViewController.swift; sourceTree = "<group>"; };
-		EB91AF181F680AB600A10DF0 /* UITextFieldLineStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldLineStyle.swift; sourceTree = "<group>"; };
+		EB91AF181F680AB600A10DF0 /* UITextFieldFixed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldFixed.swift; sourceTree = "<group>"; };
 		EB9C811D1F6AD7E300F83045 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
 		EB9C811E1F6AD7E300F83045 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		EB9E4BC51F650A9600037B47 /* SingleNoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNoteTableViewCell.swift; sourceTree = "<group>"; };
@@ -53,11 +57,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB7A282C1F7261FB00D505F4 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EB7A282D1F72624F00D505F4 /* MF ShangYa Regular.otf */,
+			);
+			name = fonts;
+			sourceTree = "<group>";
+		};
 		EB91AF131F67FCFF00A10DF0 /* ModifiedControls */ = {
 			isa = PBXGroup;
 			children = (
+				EB2085751F729302005DB1A2 /* StretchBox.swift */,
 				EB91AF141F67FD5100A10DF0 /* UITextViewFixed.swift */,
-				EB91AF181F680AB600A10DF0 /* UITextFieldLineStyle.swift */,
+				EB91AF181F680AB600A10DF0 /* UITextFieldFixed.swift */,
 			);
 			name = ModifiedControls;
 			sourceTree = "<group>";
@@ -114,6 +127,7 @@
 		EBDBFE761F61830E00E8FC6E /* MrBrick */ = {
 			isa = PBXGroup;
 			children = (
+				EB7A282C1F7261FB00D505F4 /* fonts */,
 				EBCAB0A01F6AACC000E2E692 /* DatabaseController.swift */,
 				EB9C811D1F6AD7E300F83045 /* Note+CoreDataClass.swift */,
 				EB9C811E1F6AD7E300F83045 /* Note+CoreDataProperties.swift */,
@@ -191,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBB16CBB1F642236009EFC7F /* images in Resources */,
+				EB7A282E1F72624F00D505F4 /* MF ShangYa Regular.otf in Resources */,
 				EBDBFE821F61830E00E8FC6E /* LaunchScreen.storyboard in Resources */,
 				EBDBFE7F1F61830E00E8FC6E /* Assets.xcassets in Resources */,
 				EBDBFE7D1F61830E00E8FC6E /* Main.storyboard in Resources */,
@@ -206,8 +221,9 @@
 			files = (
 				EBCAB0A11F6AACC000E2E692 /* DatabaseController.swift in Sources */,
 				EB9E4BC61F650A9600037B47 /* SingleNoteTableViewCell.swift in Sources */,
-				EB91AF191F680AB600A10DF0 /* UITextFieldLineStyle.swift in Sources */,
+				EB91AF191F680AB600A10DF0 /* UITextFieldFixed.swift in Sources */,
 				EBCAB0791F6AA5D400E2E692 /* MrBrick.xcdatamodeld in Sources */,
+				EB2085761F729302005DB1A2 /* StretchBox.swift in Sources */,
 				EBDBFE781F61830E00E8FC6E /* AppDelegate.swift in Sources */,
 				EB91AF121F67D85B00A10DF0 /* NoteListViewController.swift in Sources */,
 				EB9C811F1F6AD7E300F83045 /* Note+CoreDataClass.swift in Sources */,

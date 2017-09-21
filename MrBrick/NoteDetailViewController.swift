@@ -36,7 +36,7 @@ class NoteDetailViewController: UIViewController,UITextViewDelegate {
     }
     
     
-    @IBOutlet weak var noteTitleLabel: UITextFieldLineStyle!
+    @IBOutlet weak var noteTitleTextField: UITextField!
     
     @IBOutlet weak var noteContentTextView: UITextViewFixed!
     
@@ -45,7 +45,7 @@ class NoteDetailViewController: UIViewController,UITextViewDelegate {
 
         // Do any additional setup after loading the view.
         
-        noteTitleLabel.text = note?.title
+        noteTitleTextField.text = note?.title
         noteContentTextView.text = note?.content
     }
 
