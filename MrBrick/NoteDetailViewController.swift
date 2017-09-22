@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class NoteDetailViewController: UIViewController,UITextViewDelegate {
+class NoteDetailViewController: UIViewController,UITextViewDelegate,UITextFieldDelegate {
 
     var note:Note?
     
@@ -40,6 +40,8 @@ class NoteDetailViewController: UIViewController,UITextViewDelegate {
     
     @IBOutlet weak var noteContentTextView: UITextViewFixed!
     
+    @IBOutlet weak var stretchBox: StretchBox!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,6 +49,8 @@ class NoteDetailViewController: UIViewController,UITextViewDelegate {
         
         noteTitleTextField.text = note?.title
         noteContentTextView.text = note?.content
+        
+        stretchBox.addBottomLine(width: stretchBox.lineWidth, color: stretchBox.lineColor, ratio: (noteTitleTextField.text?.characters.count)!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,12 +58,17 @@ class NoteDetailViewController: UIViewController,UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
     func textViewDidChange(_ textView: UITextView) {
         note?.content = textView.text
         
         DatabaseController.saveContext()
     }
-    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        note?.title = textField.text
+        
+        DatabaseController.saveContext()
+    }
     /*
     // MARK: - Navigation
 

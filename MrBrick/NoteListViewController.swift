@@ -204,8 +204,13 @@ class NoteListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     @IBAction func ConvertToEditModel(_ sender: Any) {
         
+        let tempBtn = sender as! UIButton
+        let tempImg = (!MainList.isEditing) ? UIImage(named: "EditBtn_Checked") : UIImage(named:"EditBtn")
+        
+        tempBtn.setImage(tempImg, for: .normal)
+        
         MainList.setEditing(!MainList.isEditing, animated: true)
-        (sender as! UIBarButtonItem).title = MainList.isEditing ? "Done":"Edit"
+        //(sender as! UIBarButtonItem).title = MainList.isEditing ? "Done":"Edit"
         
     }
     

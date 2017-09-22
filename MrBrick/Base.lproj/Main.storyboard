@@ -39,8 +39,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="97.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nch-vB-Uy9" customClass="UITextViewFixed" customModule="MrBrick" customModuleProvider="target">
-                                                    <rect key="frame" x="43" y="43" width="288" height="46"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nch-vB-Uy9" customClass="UITextViewFixed" customModule="MrBrick" customModuleProvider="target">
+                                                    <rect key="frame" x="43" y="46" width="288" height="46"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="288" id="2KB-SJ-y5o"/>
@@ -52,7 +52,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NuA-uV-9OU">
-                                                    <rect key="frame" x="43" y="22" width="288" height="17"/>
+                                                    <rect key="frame" x="43" y="22" width="288" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="288" id="VKb-ZL-bkV"/>
                                                     </constraints>
@@ -88,9 +88,12 @@
                                         <rect key="frame" x="27" y="0.0" width="31" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="EditBtn"/>
+                                        <connections>
+                                            <action selector="ConvertToEditModel:" destination="cBI-QC-MFS" eventType="touchUpInside" id="3rF-nk-e6O"/>
+                                        </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.070352677180000003" green="0.42966585470000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="skO-DQ-Tds"/>
                                 </constraints>
@@ -101,9 +104,12 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIB-pC-hSK">
                                         <rect key="frame" x="161" y="46" width="53" height="53"/>
                                         <state key="normal" image="CreateBtn"/>
+                                        <connections>
+                                            <segue destination="Gvz-2w-z8k" kind="show" identifier="createNote" id="abD-EN-mUj"/>
+                                        </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.070352677180000003" green="0.42966585470000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="rIB-pC-hSK" firstAttribute="centerX" secondItem="PCh-Mz-tJk" secondAttribute="centerX" id="1hk-RQ-xmP"/>
                                     <constraint firstAttribute="width" constant="375" id="Xfu-Ee-28i"/>
@@ -154,7 +160,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.070352677180000003" green="0.42966585470000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="ftY-kW-exj"/>
                                     <constraint firstAttribute="width" constant="375" id="xlL-ER-rYU"/>
@@ -164,7 +170,7 @@
                                 <rect key="frame" x="56" y="85" width="263" height="29"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Title is here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IET-vg-nN7">
-                                        <rect key="frame" x="8" y="5" width="247" height="18"/>
+                                        <rect key="frame" x="8" y="5" width="247" height="21"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="247" id="MV5-O6-3Jx"/>
@@ -172,9 +178,12 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="MFShangYa_Noncommercial-Regular" family="MF ShangYa (Noncommercial)" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="Gvz-2w-z8k" id="BnX-VK-ZGw"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" red="0.070352677180000003" green="0.42966585470000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="IET-vg-nN7" firstAttribute="top" secondItem="P5F-Cg-GGZ" secondAttribute="top" constant="5" id="1hQ-ie-qRU"/>
                                     <constraint firstAttribute="width" constant="263" id="Wnx-En-Y2L"/>
@@ -185,7 +194,7 @@
                                     <outlet property="textField" destination="IET-vg-nN7" id="bq1-OJ-7mU"/>
                                 </connections>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wxp-sc-WB4" customClass="UITextViewFixed" customModule="MrBrick" customModuleProvider="target">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wxp-sc-WB4" customClass="UITextViewFixed" customModule="MrBrick" customModuleProvider="target">
                                 <rect key="frame" x="31" y="136" width="313" height="498"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -212,6 +221,7 @@
                     <connections>
                         <outlet property="noteContentTextView" destination="wxp-sc-WB4" id="dMj-QV-ypc"/>
                         <outlet property="noteTitleTextField" destination="IET-vg-nN7" id="gZx-Ko-MZa"/>
+                        <outlet property="stretchBox" destination="P5F-Cg-GGZ" id="ngs-HE-D5g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bl8-N7-JYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -224,4 +234,7 @@
         <image name="EditBtn" width="31" height="31"/>
         <image name="PerivousBtn" width="14" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="abD-EN-mUj"/>
+    </inferredMetricsTieBreakers>
 </document>

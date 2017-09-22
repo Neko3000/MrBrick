@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB1179401F75353B00B838DB /* CreateUIColorFromHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB11793F1F75353B00B838DB /* CreateUIColorFromHex.swift */; };
 		EB2085761F729302005DB1A2 /* StretchBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2085751F729302005DB1A2 /* StretchBox.swift */; };
 		EB7A282E1F72624F00D505F4 /* MF ShangYa Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EB7A282D1F72624F00D505F4 /* MF ShangYa Regular.otf */; };
 		EB91AF121F67D85B00A10DF0 /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB91AF111F67D85B00A10DF0 /* NoteListViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB11793F1F75353B00B838DB /* CreateUIColorFromHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUIColorFromHex.swift; sourceTree = "<group>"; };
 		EB2085751F729302005DB1A2 /* StretchBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StretchBox.swift; sourceTree = "<group>"; };
 		EB7A282D1F72624F00D505F4 /* MF ShangYa Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MF ShangYa Regular.otf"; sourceTree = "<group>"; };
 		EB91AF111F67D85B00A10DF0 /* NoteListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				EB2085751F729302005DB1A2 /* StretchBox.swift */,
 				EB91AF141F67FD5100A10DF0 /* UITextViewFixed.swift */,
 				EB91AF181F680AB600A10DF0 /* UITextFieldFixed.swift */,
+				EB11793F1F75353B00B838DB /* CreateUIColorFromHex.swift */,
 			);
 			name = ModifiedControls;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				EB2085761F729302005DB1A2 /* StretchBox.swift in Sources */,
 				EBDBFE781F61830E00E8FC6E /* AppDelegate.swift in Sources */,
 				EB91AF121F67D85B00A10DF0 /* NoteListViewController.swift in Sources */,
+				EB1179401F75353B00B838DB /* CreateUIColorFromHex.swift in Sources */,
 				EB9C811F1F6AD7E300F83045 /* Note+CoreDataClass.swift in Sources */,
 				EB91AF151F67FD5100A10DF0 /* UITextViewFixed.swift in Sources */,
 				EB91AF171F68078900A10DF0 /* NoteDetailViewController.swift in Sources */,

@@ -19,6 +19,12 @@ import UIKit
     */
     var bottomLine:CALayer = CALayer()
     
+    var basicLength:CGFloat = 20
+    var stepLength:CGFloat = 15
+    
+    var lineColor = UIColor(rgb:0x32D8AB,alphaVal:1.0)
+    var lineWidth:CGFloat = 1.0
+    
     @IBOutlet weak var textField:UITextField!
     
      //run as the button click?
@@ -31,26 +37,23 @@ import UIKit
         super.awakeFromNib()
         textField.addTarget(self, action: #selector(editingChanged(sender:)), for: .editingChanged)
         
-        addBottomLine(width: 3, color: UIColor.red)
+        //addBottomLine(width: lineWidth, color: lineColor, ratio: (textField.text?.characters.count)!)
     }
     
-    func addBottomLine(width: CGFloat,color: UIColor){
-        let basicLength:CGFloat = 20
-        let stepLength:CGFloat = 5
+    public func addBottomLine(width: CGFloat,color: UIColor,ratio: Int){
         
         bottomLine.backgroundColor = color.cgColor
         
-        bottomLine.frame = CGRect(x:(self.frame.size.width - basicLength)/2 , y:self.frame.height - width , width:basicLength, height: width)
+        let length:CGFloat = basicLength + stepLength * CGFloat(ratio)
+        
+        bottomLine.frame = CGRect(x:(self.frame.size.width - length)/2 , y:self.frame.height - width , width:length, height: width)
 
         self.layer.addSublayer(bottomLine)
     }
     
     func adjustBottomLine(width: CGFloat,color: UIColor,ratio: Int)
     {
-        bottomLine.backgroundColor = UIColor.green.cgColor
-        
-        let basicLength:CGFloat = 20
-        let stepLength:CGFloat = 5
+        bottomLine.backgroundColor = color.cgColor
         
         let length:CGFloat = basicLength + stepLength * CGFloat(ratio)
         
@@ -60,7 +63,7 @@ import UIKit
     func editingChanged(sender:AnyObject){
         
         let tempTextField = sender as! UITextField
-        adjustBottomLine(width: 3.0, color: UIColor.green, ratio: (tempTextField.text?.characters.count)!)
+        adjustBottomLine(width: lineWidth, color: lineColor, ratio: (tempTextField.text?.characters.count)!)
     }
     
     
